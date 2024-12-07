@@ -15,17 +15,18 @@ public class FPSController : MonoBehaviour
     public float lookSpeed = 2f;
     public float lookLimit = 90f;
 
-    public float crouchHeight = 0.5f; 
-    public float standHeight = 2f;  
-    public Vector3 crouchCenter = new Vector3(0, 0.5f, 0); 
-    public Vector3 standCenter = new Vector3(0, 0, 0);
+    float crouchHeight;
+    float standingHeight;
 
-    private float originalCameraHeight;
+    Vector3 initialCameraPosition;
+    public Transform cameraTransform;
 
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
     public bool canMove = true;
+    public bool isRunning;
+    public bool isCrouching;
     #endregion
     CharacterController characterController;
 
@@ -35,18 +36,27 @@ public class FPSController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        originalCameraHeight = characterController.transform.localScale.y;
+        standingHeight = characterController.height;
+        crouchHeight = standingHeight / 2;
+        initialCameraPosition = cameraTransform.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
+        handleMovement();
+        handleRotation();
+    }
+
+    void handleMovement()
+    {
         #region Handles Movement
         Vector3 forward = transform.forward;
         Vector3 right = transform.right;
-        
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        bool isCrouching = Input.GetKey(KeyCode.LeftControl);
+
+        isRunning = Input.GetKey(KeyCode.LeftShift);
+
+        // Determine movement speed based on crouching or running
         float curSpeedX = canMove ? (isRunning ? runSpeed : (isCrouching ? crouchSpeed : walkSpeed)) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (isRunning ? runSpeed : (isCrouching ? crouchSpeed : walkSpeed)) * Input.GetAxis("Horizontal") : 0;
 
@@ -70,7 +80,29 @@ public class FPSController : MonoBehaviour
         }
         #endregion
 
-        #region Handles Rotation
+        #region Handles Crouching
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            // Toggle crouch state
+            isCrouching = !isCrouching;
+
+            // Set target values based on crouch state
+            var heightTarget = isCrouching ? crouchHeight : standingHeight;
+
+            var halfHeightDiff = new Vector3(0, (standingHeight - heightTarget) / 2, 0);
+            var newCameraPos = initialCameraPosition - halfHeightDiff;
+
+            playerCamera.transform.localPosition = newCameraPos;
+            characterController.height = heightTarget;
+        }
+
+        
+        #endregion
+
+    }
+
+    void handleRotation()
+    {
         characterController.Move(moveDirection * Time.deltaTime);
 
         if (canMove)
@@ -86,22 +118,7 @@ public class FPSController : MonoBehaviour
 
             // Handle Horizontal Rotation (Player Body)
             transform.rotation *= Quaternion.Euler(0, mouseX, 0); // Rotate player body horizontally
-
-            if (isCrouching)
-            {
-                playerCamera.transform.localPosition = new Vector3(playerCamera.transform.localPosition.x, crouchHeight, playerCamera.transform.localPosition.z);
-                characterController.height = crouchHeight;
-                characterController.center = crouchCenter;
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftControl) &&  isCrouching)
-            {
-                isCrouching = false;
-                playerCamera.transform.localPosition = new Vector3(playerCamera.transform.localPosition.x, originalCameraHeight, playerCamera.transform.localPosition.z);
-                characterController.height = standHeight;
-                characterController.center = standCenter;
-            }
         }
-        #endregion
     }
 
 }
