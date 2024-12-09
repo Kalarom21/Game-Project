@@ -1,5 +1,6 @@
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))] 
 public class FPSController : MonoBehaviour
@@ -15,8 +16,11 @@ public class FPSController : MonoBehaviour
     public float lookSpeed = 2f;
     public float lookLimit = 90f;
 
-    float crouchHeight;
+    float crouchHeight = 1f;
     float standingHeight;
+    float currentHeight;
+
+    float crouchTransitionSpeed = 10f;
 
     Vector3 initialCameraPosition;
     public Transform cameraTransform;
@@ -27,6 +31,13 @@ public class FPSController : MonoBehaviour
     public bool canMove = true;
     public bool isRunning;
     public bool isCrouching;
+
+
+    public float height
+    {
+        get => characterController.height;
+        set => characterController.height = value;
+    }
     #endregion
     CharacterController characterController;
 
@@ -36,8 +47,7 @@ public class FPSController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        standingHeight = characterController.height;
-        crouchHeight = standingHeight / 2;
+        standingHeight = height;
         initialCameraPosition = cameraTransform.localPosition;
     }
 
@@ -46,6 +56,7 @@ public class FPSController : MonoBehaviour
     {
         handleMovement();
         handleRotation();
+        handleCrouching();
     }
 
     void handleMovement()
@@ -57,8 +68,8 @@ public class FPSController : MonoBehaviour
         isRunning = Input.GetKey(KeyCode.LeftShift);
 
         // Determine movement speed based on crouching or running
-        float curSpeedX = canMove ? (isRunning ? runSpeed : (isCrouching ? crouchSpeed : walkSpeed)) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? runSpeed : (isCrouching ? crouchSpeed : walkSpeed)) * Input.GetAxis("Horizontal") : 0;
+        float curSpeedX = canMove ? (isRunning && !isCrouching ? runSpeed : (isCrouching ? crouchSpeed : walkSpeed)) * Input.GetAxis("Vertical") : 0;
+        float curSpeedY = canMove ? (isRunning && !isCrouching ? runSpeed : (isCrouching ? crouchSpeed : walkSpeed)) * Input.GetAxis("Horizontal") : 0;
 
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
@@ -79,27 +90,52 @@ public class FPSController : MonoBehaviour
             moveDirection.y -= gravity * Time.deltaTime;
         }
         #endregion
+    }
 
-        #region Handles Crouching
+    void handleCrouching()
+    {
+        // Target height based on crouch state
+        var targetHeight = isCrouching ? crouchHeight : standingHeight;
+
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            // Toggle crouch state
-            isCrouching = !isCrouching;
-
-            // Set target values based on crouch state
-            var heightTarget = isCrouching ? crouchHeight : standingHeight;
-
-            var halfHeightDiff = new Vector3(0, (standingHeight - heightTarget) / 2, 0);
-            var newCameraPos = initialCameraPosition - halfHeightDiff;
-
-            playerCamera.transform.localPosition = newCameraPos;
-            characterController.height = heightTarget;
+            isCrouching = !isCrouching; // Toggle crouch state
         }
 
-        
-        #endregion
+        /*
+        if (isCrouching && Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            var castOrigin = transform.position + new Vector3(0, currentHeight / 2, 0);
+            if (Physics.Raycast(castOrigin, Vector3.up, out RaycastHit hit, 0.2f))
+            {
+                var distToCeiling = hit.point.y - castOrigin.y;
+                targetHeight = Mathf.Max
+                (
+                    currentHeight + distToCeiling - 0.1f,
+                    crouchHeight
+                );
+            }
+        }
+        */
 
+        // Smoothly transition the height
+        currentHeight = Mathf.Lerp(currentHeight, targetHeight, Time.deltaTime * crouchTransitionSpeed);
+
+        // Update character controller's height
+        height = currentHeight;
+
+        // Adjust camera position based on crouch state
+        var halfHeightDiff = new Vector3(0, (standingHeight - currentHeight) / 2, 0);
+
+        if (isCrouching)
+        {
+            halfHeightDiff.y -= 0.3f;
+        }
+
+        Vector3 targetCamPos = initialCameraPosition - halfHeightDiff;
+        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, targetCamPos, Time.deltaTime * crouchTransitionSpeed);
     }
+
 
     void handleRotation()
     {
