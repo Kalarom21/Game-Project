@@ -39,12 +39,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 924
+    x: 1242
     y: 0
-    width: 1213
+    width: 895
     height: 1052
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 226}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 196
+  controlID: 212
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -121,8 +121,8 @@ MonoBehaviour:
     y: 0
     width: 318
     height: 1052
-  m_MinSize: {x: 201, y: 226}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 8213
+  controlID: 140
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 8214
+  controlID: 141
   draggingID: 0
 --- !u!114 &12
 MonoBehaviour:
@@ -297,7 +297,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 318
     y: 0
-    width: 606
+    width: 924
     height: 1052
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
@@ -482,7 +482,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/PlayerScripts
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -492,16 +492,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/PlayerScripts
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\HorrorGameProject\Game-Project\Horror Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 60}
-    m_SelectedIDs: 72aa0000
-    m_LastClickedID: 43634
-    m_ExpandedIDs: 0000000062a800003aaa00003eaa000000ca9a3bffffff7f
+    m_SelectedIDs: 8aa80000
+    m_LastClickedID: 43146
+    m_ExpandedIDs: 000000008aa8000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -530,7 +530,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000062a80000
+    m_ExpandedIDs: 000000008aa80000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -558,7 +558,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c623000056a4000014b7000014ac0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -676,9 +676,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: dca50000
-      m_LastClickedID: 42460
-      m_ExpandedIDs: d4beffff94faffff96faffff98faffff9afaffffa0faffffa2faffffa4faffffa6faffffaefaffffb0faffffb2faffffbafaffffbcfaffffbefaffffc2faffffc4faffffc6faffffc8faffffcafaffffccfaffffcefaffffd0faffffd2faffffe0faffffe2faffffe4faffffe6faffffe8faffffecfaffffeefafffff0fafffff2fafffff4faffff0cfbffff0efbffff10fbffff12fbffff14fbffff1afbffff1cfbffff1efbffffdca5000008a6000010a60000b4a60000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 1efbffffe6a5000012a600001aa60000bea60000cca60000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -726,7 +726,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 318
     y: 79
-    width: 604
+    width: 922
     height: 1026
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1212,9 +1212,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -17.699041, y: -17.577219, z: -20.67818}
+    m_Target: {x: -18.553396, y: -17.017467, z: -19.065784}
     speed: 2
-    m_Value: {x: -17.699041, y: -17.577219, z: -20.67818}
+    m_Value: {x: -18.553396, y: -17.017467, z: -19.065784}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1260,9 +1260,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.17787641, y: -0.7851434, z: 0.2627175, w: 0.532084}
+    m_Target: {x: 0.17926975, y: -0.7697148, z: 0.24605858, w: 0.56132174}
     speed: 2
-    m_Value: {x: 0.17746225, y: -0.7858526, z: 0.26295453, w: 0.5308462}
+    m_Value: {x: 0.1796184, y: -0.7687853, z: 0.24576172, w: 0.5624123}
   m_Size:
     m_Target: 12.70965
     speed: 2
@@ -1354,9 +1354,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 924
+    x: 1242
     y: 79
-    width: 1211
+    width: 893
     height: 1026
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_ShowGizmos: 1
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1211, y: 1005}
+  m_TargetSize: {x: 893, y: 1005}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -1392,8 +1392,8 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -605.5
-    m_HBaseRangeMax: 605.5
+    m_HBaseRangeMin: -446.5
+    m_HBaseRangeMax: 446.5
     m_VBaseRangeMin: -502.5
     m_VBaseRangeMax: 502.5
     m_HAllowExceedBaseRangeMin: 1
@@ -1413,23 +1413,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1211
+      width: 893
       height: 1005
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 605.5, y: 502.5}
+    m_Translation: {x: 446.5, y: 502.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -605.5
+      x: -446.5
       y: -502.5
-      width: 1211
+      width: 893
       height: 1005
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1211, y: 1026}
+  m_LastWindowPixelSize: {x: 893, y: 1026}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
