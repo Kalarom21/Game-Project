@@ -429,7 +429,7 @@
 "Assets/Scripts/PlayerScripts/FPSController.cs"
 "Assets/Scripts/PlayerScripts/InteractionController.cs"
 "Assets/Scripts/PlayerScripts/ViewBobbing.cs"
-"Assets/TutorialInfo/Scripts/Readme.cs"
+"Assets/Scripts/ToolSwitching.cs"
 -langversion:9.0
 /deterministic
 /optimize+
