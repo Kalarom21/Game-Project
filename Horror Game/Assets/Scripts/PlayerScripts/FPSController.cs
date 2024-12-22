@@ -91,7 +91,7 @@ public class FPSController : MonoBehaviour
         }
         #endregion
     }
-
+    
     void handleCrouching()
     {
         // Target height based on crouch state
